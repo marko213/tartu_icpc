@@ -96,7 +96,7 @@ class TartuICPCLexer(CppLexer):
 
 
 
-	def get_tokens_unprocessed(self, text):
+	def get_tokens_unprocessed(self, text, stack=None):
 		yield from self._analyse(text, 0, len(text), None)
 
 from pygments.style import Style

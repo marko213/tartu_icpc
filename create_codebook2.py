@@ -258,3 +258,7 @@ with open('footer.html', 'r') as file:
 fout = open("codebookpart2.html", "w")
 fout.write(full_html)
 fout.close()
+
+os.system("prince codebookpart2.html -o codebookpart2.pdf")
+#os.system("pandoc codebookpart2.html -t latex -o codebookpart2.pdf")
+

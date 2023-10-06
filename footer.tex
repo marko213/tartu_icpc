@@ -3,7 +3,34 @@
 \includepdf[pages={-}, angle=90,pagecommand={\pagestyle{fancy}}]{codebookpart2}
 
 \newpage 
-\mbox{}
+% hexagon grid
+% adapted from https://tex.stackexchange.com/questions/61429/how-to-draw-a-hexagonal-grid-with-numbers-in-the-cells
+\begin{tikzpicture}[hexa/.style= {shape=regular polygon,regular polygon sides=6,minimum size=1cm, draw,inner sep=0,anchor=south,rotate=30}]
+\foreach \j in {0,...,22}{%
+\pgfmathsetmacro\end{29+(\j-\j/2)}
+\pgfmathtruncatemacro\what{\j-\j/2}
+  \foreach \i in {\what,...,\end}{%
+  \node[hexa] (h\i;\j) at ({(\i-\j/2)*sin(60)},{\j*0.75}) {};}  }      
+\end{tikzpicture}
+\iffalse
+\newpage
+% large hexagon
+\begin{tikzpicture}[hexa/.style= {shape=regular polygon,regular polygon sides=6,minimum size=2cm, draw,inner sep=0,anchor=south,rotate=30}]
+\foreach \j in {0,...,10}{%
+\pgfmathsetmacro\end{14+(\j-\j/2)}
+\pgfmathtruncatemacro\what{\j-\j/2}
+  \foreach \i in {\what,...,\end}{%
+  \node[hexa] (h\i;\j) at ({(\i-\j/2)*sin(60)*2},{\j*0.75*2}) {};}  }      
+\end{tikzpicture}
+\newpage 
+% large hexagon
+\begin{tikzpicture}[hexa/.style= {shape=regular polygon,regular polygon sides=6,minimum size=2cm, draw,inner sep=0,anchor=south,rotate=30}]
+\foreach \j in {0,...,10}{%
+\pgfmathsetmacro\end{14+(\j-\j/2)}
+\pgfmathtruncatemacro\what{\j-\j/2}
+  \foreach \i in {\what,...,\end}{%
+  \node[hexa] (h\i;\j) at ({(\i-\j/2)*sin(60)*2},{\j*0.75*2}) {};}  }      
+\end{tikzpicture}
 \newpage 
 \mbox{}
 \newpage 
@@ -22,11 +49,8 @@
 \mbox{}
 \newpage 
 \mbox{}
-\newpage 
-\mbox{}
-\newpage 
-\mbox{}
-\newpage 
+\fi
+\newpage
 \pagestyle{empty} % in case you accidentially print theses pages, they will be empty and the paper can be reused
 \setcounter{page}{5}
 \addcontentsline{toc}{section}{Triangle centers}
@@ -98,6 +122,8 @@
 \mbox{}
 \newpage 
 \addcontentsline{toc}{section}{Splay Tree + Link-Cut $O(N \log N)$}
+\addcontentsline{toc}{section}{Suffix array and longest common prefix}
 \mbox{}
+\end{landscape}
 \end{document}
 % !end_codebook

@@ -13,7 +13,6 @@
 \usepackage{pdflscape}
 \usepackage{multicol}
 \usepackage{lmodern}
-
 \usepackage{physics}
 \usepackage{harpoon}
 \renewcommand{\le}{\leqslant}
@@ -48,97 +47,71 @@
 %\newcommand*{\vv}[1]{\overrightharp{\ensuremath{#1}}}
 \newcommand{\vv}[1]{\overline{#1}}
 \usepackage{setspace}
-
 \numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 \numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 \numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
-
-\usepackage[hmarginratio=1:1,top=19mm, bottom=10mm, columnsep=0mm, left=10mm, right=15mm]{geometry} % Document margins
+\usepackage[hmarginratio=1:1,top=20mm, bottom=5mm, columnsep=0mm, left=19mm, right=10mm]{geometry} % Document margins
 \usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
 \usepackage{booktabs} % Horizontal rules in tables
-
 \usepackage{enumitem} % Customized lists
 \setlist[itemize]{noitemsep} % Make itemize lists more compact
 \usepackage{fancyhdr} % Proper control over header
 \usepackage{microtype}
 \usepackage{tocloft}
-
 \usepackage{minted}
 \usepackage{etoolbox}
-
+\usepackage{tikz}
+\usetikzlibrary{shapes}
 \AtBeginEnvironment{minted}{\fontsize{10}{10}\selectfont}
 \BeforeBeginEnvironment{minted}{\vspace*{-2.5mm}}
 \AfterEndEnvironment{minted}{\vspace*{-4.5mm}}
 \usemintedstyle{emacs}
-
 \titleformat*{\section}{\bfseries}
 \titlespacing*{\section}{0mm}{0mm}{0mm}
-
-\let\raggedsection\centering
-\title{\textbf{University of Tartu ICPC Team Notebook (2018-2019)}}
+\title{\textbf{University of Tartu ICPC Team Notebook (2022-2023)}}
 \date{\today}
-
 \pagestyle{fancy}
 \fancyhf{}
 \lhead{University of Tartu}
 \rhead{\thepage}
 \setlength{\headsep}{2mm}
-
 \hyphenpenalty=2000
 \exhyphenpenalty=2000
 \tolerance=2000
 \emergencystretch=10pt
 \binoppenalty=10
 \relpenalty=10
-
-
-
 \renewcommand\cftsecfont{\small}
-
 \renewcommand\cftsecpagefont{\small}
-
 \setlength{\cftbeforesecskip}{0pt}
 \renewcommand\cftsecbeforepnum{\vskip 0pt}
 \renewcommand\cftsecafterpnum{\vskip 0pt}
-
-
-
-
 \makeatletter
 \let\latexl@section\l@section
 \def\l@section#1#2{\begingroup\let\numberline\@gobble\latexl@section{#1}{#2}\endgroup}
 \def\@seccntformat#1{\ifcsname #1format\endcsname\else\csname the#1\endcsname\quad\fi}
 \def\sectionformat{}
 \makeatother
-
-
 \addto\captionsenglish{% Replace "english" with the language you use
   \renewcommand{\contentsname}%
     {}%
 }
-\begin{document} 
-\pagenumbering{gobble} 
-
+\begin{document}
+\pagenumbering{gobble}
 \begin{landscape}
 \setlength{\columnsep}{4mm}
 \setlength{\columnseprule}{0.4pt}
 \begin{multicols}{3}
-
 \begin{center}
 	\smallskip
-  \Large{\textbf{University of Tartu ICPC Team Notebook (2018-2019)}}
-
+  \Large{\textbf{University of Tartu ICPC Team Notebook (2022-2023)}}
 	\today
 \end{center}
- 
 \begingroup
 \vspace{-10mm} % the removed space. Set as appropriate
 \tableofcontents
 \endgroup
-\pagenumbering{arabic}  
-
 % \par\noindent\rule{\textwidth}{0.4pt}
-
 \section{Maxflow Complexity}
 \begin{description}[align=left]
   \item [$\mathcal{O}(V^2E)$] -- Dinic
@@ -169,22 +142,18 @@ return a;
 \end{lstlisting}
 \unboldmath
 \setlength\columnsep{10mm}
-\section{Series} 
+\section{Series}
 $$e^x = 1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\dots,\,(-\infty<x<\infty)$$
 $$\ln(1+x) = x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\dots,\,(-1<x\leq1)$$
 $$\sqrt{1+x} = 1+\frac{x}{2}-\frac{x^2}{8}+\frac{2x^3}{32}-\frac{5x^4}{128}+\dots,\,(-1\leq x\leq1)$$
 $$\sin x = x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\dots,\,(-\infty<x<\infty)$$
 $$\cos x = 1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\dots,\,(-\infty<x<\infty)$$
 \section{Symmetric Submodular Functions; Queyrannes's algorithm}
-
 \noindent {\bf SSF}: such function $f : V \rightarrow R$ that satisfies $f(A) = f(V/A)$
 and for all $x \in V, X \subseteq Y \subseteq V$ it holds that
 $f(X+x) - f(X) \leq f(Y+x) - f(Y)$.
-
 \noindent {\bf Hereditary family}: such set $I \subseteq 2^V$ so that $X \subset Y \wedge Y \in I \Rightarrow X \in I$.
-
 \noindent {\bf Loop}: such $v \in V$ so that ${v} \notin I$.
-
 \begin{minted}[tabsize=2,baselinestretch=1, breaklines, texcomments=true, mathescape=true]{python}
 def minimize():
 	s = merge_all_loops()
@@ -206,8 +175,7 @@ def find_pp():
 		todo -= {x}
 		ord.append(x)
 	return ord[-1], ord[-2]
-
-def enum_all_minimal_minimizers(X): 
+def enum_all_minimal_minimizers(X):
   # X is a inclusionwise minimal minimizer
 	s = merge(s, X)
 	yield X
@@ -224,13 +192,12 @@ def enum_all_minimal_minimizers(X):
 			yield tu
 			s = merge(tu, s)
 \end{minted}
-
+\pagenumbering{arabic}
+\setcounter{page}{2}
 \section{Subset convolution $\mathcal{O}(N\log N)$}
-
 $\displaystyle c[z] = \sum\nolimits_{z = x \oplus y}
 a[x] \cdot b[y]$, where $\oplus$ is one of AND, OR, XOR.
-The size of $a$ must be a power of two. 
-
+The size of $a$ must be a power of two.
 \begin{minted}[tabsize=2,baselinestretch=1, breaklines, texcomments=true, mathescape=true]{c++}
 void FST(vi& a, bool inv) { //size(a) == $2^x$
   for (int n =(int)a.size(), step = 1; step < n; step *= 2) {
@@ -253,23 +220,37 @@ vi conv(vi a, vi b) {
   return a;
 }
 \end{minted}
+% Copied from Martin Širokov
+\section{SOS-DP $\mathcal{O}(N \log N)$}
+$\displaystyle a[x] \gets \bigoplus\nolimits_{y \subseteq x} a[y]$,
+where $\oplus$ is any commutative, associative operation.
+\begin{minted}[tabsize=2,baselinestretch=1, breaklines, texcomments=true, mathescape=true]{c++}
+for (int k = 0; k < K; k++) { // K = log N, N should be a power of two
+  int m = 1 << k;
+  for (int i = 0; i < 1 << K; i++) {
+    if (i & m) {
+      a[i] = op(a[i], a[i - m]); // replace op with your operation
+    }
+  }
+}
+\end{minted}
 \section{Pythagorean Triples}
  The Pythagorean triples are uniquely generated by
  \[ a=k\cdot (m^{2}-n^{2}),\ \,b=k\cdot (2mn),\ \,c=k\cdot (m^{2}+n^{2}), \]
  with $m > n > 0$, $k > 0$, $m \bot n$, and either $m$ or $n$ even.
-
 \section{Primes}
 	$p=962592769$ is such that $2^{21} \mid p-1$, which may be useful. For hashing
 	use 970592641 (31-bit number), 31443539979727 (45-bit), 3006703054056749
 	(52-bit). There are 78498 primes less than 1\,000\,000.
-
 	Primitive roots exist modulo any prime power $p^a$, except for $p = 2, a > 2$, and there are $\phi(\phi(p^a))$ many.
 	For $p = 2, a > 2$, the group $\mathbb Z_{2^a}^\times$ is instead isomorphic to $\mathbb Z_2 \times \mathbb Z_{2^{a-2}}$.
-
 \section{Estimates}
 	$\sum_{d|n} d = O(n \log \log n)$.
-
 	The number of divisors of $n$ is at most around 100 for $n < 5e4$, 500 for $n < 1e7$, 2000 for $n < 1e10$, 200\,000 for $n < 1e19$.
+	\section{Möbius inversion}
+\[
+  \forall n: g(n) = \sum_{d|n} f(d) \Longleftrightarrow \forall n: f(n) = \sum_{d|n} \mu(d) g\bigg(\frac{n}{d}\bigg)
+\]
 	\section{Derangements}
 		Permutations of a set such that none of the elements appear in their original position.
 \[
@@ -282,10 +263,8 @@ vi conv(vi a, vi b) {
 		Given a group $G$ of symmetries and a set $X$, the number of elements of $X$ \emph{up to symmetry} equals
 		 \[ {\frac {1}{|G|}}\sum _{{g\in G}}|X^{g}|, \]
 		 where $X^{g}$ are the elements fixed by $g$ ($g.x = x$).
-
 		 If $f(n)$ counts ``configurations'' (of some sort) of length $n$, we can ignore rotational symmetry using $G = \mathbb Z_n$ to get
 		 \[ g(n) = \frac 1 n \sum_{k=0}^{n-1}{f(\text{gcd}(n, k))} = \frac 1 n \sum_{k|n}{f(k)\phi(n/k)}. \]
-
 \section{Partition function}
 		Number of ways of writing $n$ as a sum of positive integers, disregarding the order of the summands.
 \[
@@ -294,7 +273,6 @@ vi conv(vi a, vi b) {
 \end{split}
 \]
 		\[ p(n) \sim 0.145 / n \cdot \exp(2.56 \sqrt{n}) \]
-
 		\begin{center}
 		\begin{tabular}{c|c@{\ }c@{\ }c@{\ }c@{\ }c@{\ }c@{\ }c@{\ }c@{\ }c@{\ }c@{\ }c@{\ }c@{\ }c}
 			$n$    & 0 & 1 & 2 & 3 & 4 & 5 & 6  & 7  & 8  & 9  & 20  & 50  & 100 \\ \hline
@@ -309,24 +287,20 @@ vi conv(vi a, vi b) {
 		\end{align*}
 		$c(8,k) = 8, 0, 5040, 13068, 13132, 6769, 1960, 322, 28, 1$ \\
 		$c(n,2) = 0, 0, 1, 3, 11, 50, 274, 1764, 13068, 109584, \dots$
-
 	\section{Eulerian numbers}
 		Number of permutations $\pi \in S_n$ in which exactly $k$ elements are greater than the previous element. $k$ $j$:s s.t. $\pi(j)>\pi(j+1)$, $k+1$ $j$:s s.t. $\pi(j)\geq j$, $k$ $j$:s s.t. $\pi(j)>j$.
 		$$E(n,k) = (n-k)E(n-1,k-1) + (k+1)E(n-1,k)$$
 		$$E(n,0) = E(n,n-1) = 1$$
 		$$E(n,k) = \sum_{j=0}^k(-1)^j\binom{n+1}{j}(k+1-j)^n$$
-
 	\section{Stirling numbers of the second kind}
 		Partitions of $n$ distinct elements into exactly $k$ groups.
 		$$S(n,k) = S(n-1,k-1) + k S(n-1,k)$$
 		$$S(n,1) = S(n,n) = 1$$
 		$$S(n,k) = \frac{1}{k!}\sum_{j=0}^k (-1)^{k-j}\binom{k}{j}j^n$$
-
 	\section{Bell numbers}
 		Total number of partitions of $n$ distinct elements. $B(n) =$
 		$1, 1, 2, 5, 15, 52, 203, 877, 4140, 21147, \dots$. For $p$ prime,
 		\[ B(p^m+n)\equiv mB(n)+B(n+1) \pmod{p} \]
-
 	\section{Catalan numbers}
 		\[ C_n=\frac{1}{n+1}\binom{2n}{n}= \binom{2n}{n}-\binom{2n}{n+1} = \frac{(2n)!}{(n+1)!n!} \]
 		\[ C_0=1,\ C_{n+1} = \frac{2(2n+1)}{n+2}C_n,\ C_{n+1}=\sum C_iC_{n-i} \]
@@ -339,6 +313,59 @@ vi conv(vi a, vi b) {
 			\item ways a convex polygon with $n+2$ sides can be cut into triangles by connecting vertices with straight lines.
 			\item permutations of $[n]$ with no 3-term increasing subseq.
 		\end{itemize}
+                \section{Hall's marriage theorem}
+                Let $G$ be a bipartite graph consisting of sets $X$ and $Y$.
+                We can match every vertex in $X$ if and only if for every $W \subseteq X$,
+                \[ \left| W \right| \le \left| N(W) \right|. \]
+                \section{Prüfer sequences}
+                Consider trees with $n$ vertices. Prüfer sequences are sequences of length
+                $n - 2$ in bijection with labeled trees.
+                To convert a tree to a sequence:
+                \begin{itemize}
+                \item while the tree has more than two vertices:
+                  \begin{itemize}
+                  \item pick the leaf with the smallest label;
+                  \item remove it and append its neighbor to the sequence.
+                  \end{itemize}
+                \end{itemize}
+\section{Pascal's Triangle}
+\scalebox{0.7}{
+\begin{tabular}{r|lllllllll}
+ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+\hline
+0 & $1$\\
+2 & $1$ & $2$ & $1$\\
+4 & $1$ & $4$ & $6$ & $4$ & $1$\\
+6 & $1$ & $6$ & $15$ & $20$ & $15$ & $6$ & $1$\\
+8 & $1$ & $8$ & $28$ & $56$ & $70$ & $56$ & $28$ & $8$ & $1$\\
+10 & $1$ & $10$ & $45$ & $120$ & $210$ & $252$ & $210$ & $120$ & $45$\\
+12 & $1$ & $12$ & $66$ & $220$ & $495$ & $792$ & $924$ & $792$ & $495$\\
+14 & $1$ & $14$ & $91$ & $364$ & $1001$ & $2002$ & $3003$ & $3432$ & $3003$\\
+16 & $1$ & $16$ & $120$ & $560$ & $1820$ & $4368$ & $8008$ & $11440$ & $12870$\\
+18 & $1$ & $18$ & $153$ & $816$ & $3060$ & $8568$ & $18564$ & $31824$ & $43758$\\
+20 & $1$ & $20$ & $190$ & $1140$ & $4845$ & $15504$ & $38760$ & $77520$ & $1 \cdot 10^5$\\
+22 & $1$ & $22$ & $231$ & $1540$ & $7315$ & $26334$ & $74613$ & $2 \cdot 10^5$ & $3 \cdot 10^5$\\
+24 & $1$ & $24$ & $276$ & $2024$ & $10626$ & $42504$ & $1 \cdot 10^5$ & $3 \cdot 10^5$ & $7 \cdot 10^5$\\
+26 & $1$ & $26$ & $325$ & $2600$ & $14950$ & $65780$ & $2 \cdot 10^5$ & $7 \cdot 10^5$ & $2 \cdot 10^6$\\
+28 & $1$ & $28$ & $378$ & $3276$ & $20475$ & $98280$ & $4 \cdot 10^5$ & $1 \cdot 10^6$ & $3 \cdot 10^6$\\
+30 & $1$ & $30$ & $435$ & $4060$ & $27405$ & $1 \cdot 10^5$ & $6 \cdot 10^5$ & $2 \cdot 10^6$ & $6 \cdot 10^6$\\
+32 & $1$ & $32$ & $496$ & $4960$ & $35960$ & $2 \cdot 10^5$ & $9 \cdot 10^5$ & $3 \cdot 10^6$ & $1 \cdot 10^7$\\
+34 & $1$ & $34$ & $561$ & $5984$ & $46376$ & $3 \cdot 10^5$ & $1 \cdot 10^6$ & $5 \cdot 10^6$ & $2 \cdot 10^7$\\
+36 & $1$ & $36$ & $630$ & $7140$ & $58905$ & $4 \cdot 10^5$ & $2 \cdot 10^6$ & $8 \cdot 10^6$ & $3 \cdot 10^7$\\
+38 & $1$ & $38$ & $703$ & $8436$ & $73815$ & $5 \cdot 10^5$ & $3 \cdot 10^6$ & $1 \cdot 10^7$ & $5 \cdot 10^7$\\
+40 & $1$ & $40$ & $780$ & $9880$ & $91390$ & $7 \cdot 10^5$ & $4 \cdot 10^6$ & $2 \cdot 10^7$ & $8 \cdot 10^7$\\
+42 & $1$ & $42$ & $861$ & $11480$ & $1 \cdot 10^5$ & $9 \cdot 10^5$ & $5 \cdot 10^6$ & $3 \cdot 10^7$ & $1 \cdot 10^8$\\
+44 & $1$ & $44$ & $946$ & $13244$ & $1 \cdot 10^5$ & $1 \cdot 10^6$ & $7 \cdot 10^6$ & $4 \cdot 10^7$ & $2 \cdot 10^8$\\
+46 & $1$ & $46$ & $1035$ & $15180$ & $2 \cdot 10^5$ & $1 \cdot 10^6$ & $9 \cdot 10^6$ & $5 \cdot 10^7$ & $3 \cdot 10^8$\\
+48 & $1$ & $48$ & $1128$ & $17296$ & $2 \cdot 10^5$ & $2 \cdot 10^6$ & $1 \cdot 10^7$ & $7 \cdot 10^7$ & $4 \cdot 10^8$\\
+50 & $1$ & $50$ & $1225$ & $19600$ & $2 \cdot 10^5$ & $2 \cdot 10^6$ & $2 \cdot 10^7$ & $10 \cdot 10^7$ & $5 \cdot 10^8$\\
+52 & $1$ & $52$ & $1326$ & $22100$ & $3 \cdot 10^5$ & $3 \cdot 10^6$ & $2 \cdot 10^7$ & $1 \cdot 10^8$ & $8 \cdot 10^8$\\
+54 & $1$ & $54$ & $1431$ & $24804$ & $3 \cdot 10^5$ & $3 \cdot 10^6$ & $3 \cdot 10^7$ & $2 \cdot 10^8$ & $1 \cdot 10^9$\\
+56 & $1$ & $56$ & $1540$ & $27720$ & $4 \cdot 10^5$ & $4 \cdot 10^6$ & $3 \cdot 10^7$ & $2 \cdot 10^8$ & $1 \cdot 10^9$\\
+58 & $1$ & $58$ & $1653$ & $30856$ & $4 \cdot 10^5$ & $5 \cdot 10^6$ & $4 \cdot 10^7$ & $3 \cdot 10^8$ & $2 \cdot 10^9$\\
+60 & $1$ & $60$ & $1770$ & $34220$ & $5 \cdot 10^5$ & $5 \cdot 10^6$ & $5 \cdot 10^7$ & $4 \cdot 10^8$ & $3 \cdot 10^9$\\
+\end{tabular}
+  }
 \newpage
 \boldmath
 \setlength\columnsep{5mm}
@@ -397,38 +424,127 @@ Area of a spherical polygon:
 \end{equation*}
 \end{multicols}
 \includepdf[pages={-}, angle=90,pagecommand={\pagestyle{fancy}}]{codebookpart2}
-
-\newpage 
+\newpage
+% hexagon grid
+% adapted from https://tex.stackexchange.com/questions/61429/how-to-draw-a-hexagonal-grid-with-numbers-in-the-cells
+\begin{tikzpicture}[hexa/.style= {shape=regular polygon,regular polygon sides=6,minimum size=1cm, draw,inner sep=0,anchor=south,rotate=30}]
+\foreach \j in {0,...,22}{%
+\pgfmathsetmacro\end{29+(\j-\j/2)}
+\pgfmathtruncatemacro\what{\j-\j/2}
+  \foreach \i in {\what,...,\end}{%
+  \node[hexa] (h\i;\j) at ({(\i-\j/2)*sin(60)},{\j*0.75}) {};}  }
+\end{tikzpicture}
+\iffalse
+\newpage
+% large hexagon
+\begin{tikzpicture}[hexa/.style= {shape=regular polygon,regular polygon sides=6,minimum size=2cm, draw,inner sep=0,anchor=south,rotate=30}]
+\foreach \j in {0,...,10}{%
+\pgfmathsetmacro\end{14+(\j-\j/2)}
+\pgfmathtruncatemacro\what{\j-\j/2}
+  \foreach \i in {\what,...,\end}{%
+  \node[hexa] (h\i;\j) at ({(\i-\j/2)*sin(60)*2},{\j*0.75*2}) {};}  }
+\end{tikzpicture}
+\newpage
+% large hexagon
+\begin{tikzpicture}[hexa/.style= {shape=regular polygon,regular polygon sides=6,minimum size=2cm, draw,inner sep=0,anchor=south,rotate=30}]
+\foreach \j in {0,...,10}{%
+\pgfmathsetmacro\end{14+(\j-\j/2)}
+\pgfmathtruncatemacro\what{\j-\j/2}
+  \foreach \i in {\what,...,\end}{%
+  \node[hexa] (h\i;\j) at ({(\i-\j/2)*sin(60)*2},{\j*0.75*2}) {};}  }
+\end{tikzpicture}
+\newpage
+\mbox{}
+\newpage
+\mbox{}
+\newpage
+\mbox{}
+\newpage
+\mbox{}
+\newpage
+\mbox{}
+\newpage
+\mbox{}
+\newpage
+\mbox{}
+\newpage
+\mbox{}
+\newpage
+\mbox{}
+\fi
+\newpage
 \pagestyle{empty} % in case you accidentially print theses pages, they will be empty and the paper can be reused
 \setcounter{page}{5}
 \addcontentsline{toc}{section}{Triangle centers}
 \addcontentsline{toc}{section}{Seg-Seg intersection, halfplane intersection area}
 \addcontentsline{toc}{section}{Convex polygon algorithms}
+\mbox{}
+\newpage
+\mbox{}
+\newpage
 \addcontentsline{toc}{section}{Delaunay triangulation O(nlogn)}
+\mbox{}
+\newpage
 \addcontentsline{toc}{section}{Contest setup}
 \addcontentsline{toc}{section}{crc.sh}
+\addcontentsline{toc}{section}{Template}
+\mbox{}
+\newpage
 \addcontentsline{toc}{section}{gcc ordered set, hashtable}
 \addcontentsline{toc}{section}{PRNGs and Hash functions}
 \addcontentsline{toc}{section}{Memorypool}
 \addcontentsline{toc}{section}{Radixsort 50M 64 bit integers as single array in 1 sec}
+\mbox{}
+\newpage
 \addcontentsline{toc}{section}{FFT 10-15M length/sec}
-\addcontentsline{toc}{section}{Fast mod mult, Rabbin Miller prime check, Pollard rho factorization $O(p^0.5)$}
-\addcontentsline{toc}{section}{Berlekamp-Massey O(LN)}
+\addcontentsline{toc}{section}{Fast mod mult, Rabbin Miller prime check, Pollard rho factorization $O(\sqrt{p})$}
+\mbox{}
+\newpage
+\addcontentsline{toc}{section}{Berlekamp-Massey $O(LN)$}
+\mbox{}
+\newpage
 \addcontentsline{toc}{section}{Linear algebra}
-\addcontentsline{toc}{section}{Polynomial roots and O($n^2$) interpolation}
+\addcontentsline{toc}{section}{Polynomial roots and $O(N^2)$ interpolation}
+\mbox{}
+\newpage
 \addcontentsline{toc}{section}{Simplex algorithm}
 \addcontentsline{toc}{section}{Dinic}
-\addcontentsline{toc}{section}{Min Cost Max Flow with Cycle Cancelling O(Cnm)}
-\addcontentsline{toc}{section}{Aho Corasick O(|alpha|*sum(len))}
-\addcontentsline{toc}{section}{Suffix automaton and tree O((n+q)log(|alpha|)) - 10+M length/s}
-\addcontentsline{toc}{section}{DMST O(E log V)}
-\addcontentsline{toc}{section}{Dominator tree O(NlogN)}
-\addcontentsline{toc}{section}{Bridges O(n)}
-\addcontentsline{toc}{section}{2-Sat O(n) and SCC O(n)}
-\addcontentsline{toc}{section}{Templated multi dimensional BIT $O(log(n)^d)$ per query}
-\addcontentsline{toc}{section}{Treap O(log (n)) per query}
-\addcontentsline{toc}{section}{Generic persistent compressed lazy segment tree}
-\addcontentsline{toc}{section}{Templated HLD O(M(n) log n) per query}
-\addcontentsline{toc}{section}{Splay Tree + Link-Cut O(NlogN)}
 \mbox{}
+\newpage
+\addcontentsline{toc}{section}{Gomory-Hu $O(N \cdot \text{Dinic})$}
+\mbox{}
+\newpage
+\addcontentsline{toc}{section}{Min Cost Max Flow with Cycle Cancelling $O(CNM)$}
+\mbox{}
+\newpage
+\addcontentsline{toc}{section}{Global Min Cut $O(V^3)$}
+\addcontentsline{toc}{section}{Aho Corasick $O(|\text{alpha}|\sum \text{len})$}
+\mbox{}
+\newpage
+\addcontentsline{toc}{section}{Suffix automaton and tree $O((N + Q) \log \left| \text{alpha} \right|))$ \\ 10+M length/s}
+\mbox{}
+\newpage
+\addcontentsline{toc}{section}{Palindromic tree $O(N)$}
+\addcontentsline{toc}{section}{DMST $O(E \log V)$}
+\mbox{}
+\newpage
+\addcontentsline{toc}{section}{Dominator tree $O(N\log N)$}
+\addcontentsline{toc}{section}{Bridges $O(N)$}
+\mbox{}
+\newpage
+\addcontentsline{toc}{section}{2-Sat $O(N)$ and SCC $O(N)$}
+\addcontentsline{toc}{section}{Templated multi dimensional BIT $O(\log(n)^d)$ per query}
+\mbox{}
+\newpage
+\addcontentsline{toc}{section}{Treap $O(\log N)$ per query}
+\addcontentsline{toc}{section}{Generic persistent compressed lazy segment tree}
+\mbox{}
+\newpage
+\addcontentsline{toc}{section}{Templated HLD $O(M(N) \log N)$ per query}
+\mbox{}
+\newpage
+\addcontentsline{toc}{section}{Splay Tree + Link-Cut $O(N \log N)$}
+\addcontentsline{toc}{section}{Suffix array and longest common prefix}
+\mbox{}
+\end{landscape}
 \end{document}
