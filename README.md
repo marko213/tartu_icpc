@@ -2,6 +2,11 @@
 
 ## Setup
 
+Initialize submodules:
+```bash
+git submodule update --init
+```
+
 (Set up a venv: `python3 -m venv venv ; venv/bin/activate`.)
 
 Install `pygments` and tartu_icpc pygments style:
