@@ -11,14 +11,16 @@ fin.close()
 full_tex = ""
 
 for file in file_ord:
-    print(file)
+    if file[0] == '#':
+        continue
+    
     file = file.rstrip()
     
     if(file[-4:] == ".cpp" or file[-4:] == ".hpp" or file[-2:] == ".c" or file[-2:] == ".h" ):
         continue
     elif(file[-3:] == ".sh" ):
         continue
-
+    print(file)
     beg_str = "!begin_codebook"
     end_str = "!end_codebook"
 
@@ -37,9 +39,3 @@ for file in file_ord:
 fout = open("codebook3.tex", "w")
 fout.write(full_tex)
 fout.close()
-
-for i in range(2):
-    os.system("""/bin/bash -c "printf '\n%.0s' {1..1000}  | pdflatex --shell-escape codebook3.tex >/dev/null" """) #Run latex twice to fix links
-os.system("qpdf --pages codebook3.pdf 1-25 -- codebook3.pdf  codebook.pdf")
-
-

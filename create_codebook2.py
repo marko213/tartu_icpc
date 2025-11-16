@@ -177,6 +177,8 @@ with open('header.html', 'r') as file:
 full_tex = ""
 
 for file in file_ord:
+    if file[0] == "#":
+        continue
     print(file)
     file = file.rstrip()
     
@@ -185,11 +187,15 @@ for file in file_ord:
         lang = "c++"
     elif(file[-3:] == ".sh" ):
         lang = "bash"
+    elif file[-3:] == ".py":
+        lang = "py"
     else:
         continue
     outputting = False
     hashing = False
+    simple = False
     escape_str = "!escape "
+    simple_str = "!simple "
     beg_str = "!begin_codebook"
     end_str = "!end_codebook"
     beg_hash_str = "//!start"
@@ -207,6 +213,7 @@ for file in file_ord:
     fin = open(file, "r")
     for line in fin.readlines():
         line = line.rstrip()
+        simple_idx = line.find(simple_str)
         escape_idx = line.find(escape_str)
         beg_idx = line.find(beg_str)
         end_idx = line.find(end_str)
@@ -220,6 +227,15 @@ for file in file_ord:
             full_html += '<header>\n<b>'
             full_html += line
             full_html += '</b>\n</header>\n'
+        elif(simple_idx != -1):
+            line = line[simple_idx+len(simple_str):]
+            full_html += '<header>\n<b>'
+            full_html += line
+            full_html += '</b>\n</header>\n'
+            outputting = True
+            hashing = False
+            simple = True
+            col_hash = False
         elif(beg_idx != -1):
             outputting = True
         elif(end_idx != -1):
@@ -242,7 +258,12 @@ for file in file_ord:
             outputting = True;
         elif(outputting and not line.isspace() and len(line) > 0):
             portion.append(line)
+    if simple:
+        if len(portion) > 0:
+            processed += '\n'.join(portion)+'\n'
+        portion = []
     fout = open("tmp_source."+lang, "w");
+    #print(processed[:30])
     fout.write(processed)
     fout.close()
     os.system("pygmentize -O full,style=tartu_icpc -o tmp_source.html tmp_source."+lang)
@@ -259,6 +280,4 @@ fout = open("codebookpart2.html", "w")
 fout.write(full_html)
 fout.close()
 
-os.system("prince codebookpart2.html -o codebookpart2.pdf")
-#os.system("pandoc codebookpart2.html -t latex -o codebookpart2.pdf")
 

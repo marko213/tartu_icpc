@@ -1,0 +1,12 @@
+venv
+pygments/build
+pygments/tartu_icpc.egg-info/
+prince
+cksum.*
+*.aux
+*.log
+*.out
+*.toc
+tmp_source.*
+codebookpart2.*
+codebook3.*

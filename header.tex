@@ -28,7 +28,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\F}{\mathbb{F}}
-\newcommand{\qed}{\hfill$\blacksquare$}
+%\newcommand{\qed}{\hfill$\blacksquare$}
 \newcommand{\amp}{\, \& \,}
 \newcommand{\imp}{\Rightarrow}
 \renewcommand{\O}{\mathcal{O}}
@@ -63,7 +63,7 @@
 \usepackage{fancyhdr} % Proper control over header
 \usepackage{microtype}
 \usepackage{tocloft}
-
+\usepackage{csquotes}
 \usepackage{minted}
 \usepackage{etoolbox}
 
@@ -78,7 +78,7 @@
 \titleformat*{\section}{\bfseries}
 \titlespacing*{\section}{0mm}{0mm}{0mm}
 
-\title{\textbf{University of Tartu ICPC Team Notebook (2022-2023)}}
+\title{\textbf{University of Tartu Team \enquote{Bubblegum Bitset} Notebook (2024-2025)}}
 \date{\today}
 
 \pagestyle{fancy}
@@ -101,6 +101,7 @@
 \renewcommand\cftsecpagefont{\small}
 
 \setlength{\cftbeforesecskip}{0pt}
+\providecommand\cftsecbeforepnum{}
 \renewcommand\cftsecbeforepnum{\vskip 0pt}
 \renewcommand\cftsecafterpnum{\vskip 0pt}
 
@@ -120,7 +121,7 @@
     {}%
 }
 \begin{document} 
-\pagenumbering{gobble} 
+%\pagenumbering{gobble} 
 
 \begin{landscape}
 \setlength{\columnsep}{4mm}
@@ -129,7 +130,7 @@
 
 \begin{center}
 	\smallskip
-  \Large{\textbf{University of Tartu ICPC Team Notebook (2022-2023)}}
+  \Large{\textbf{University of Tartu Team \enquote{Bubblegum Bitset} Notebook (2024-2025)}}
 
 	\today
 \end{center}
